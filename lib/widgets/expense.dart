@@ -25,6 +25,12 @@ class _ExpensesState extends State<Expenses> {
       category: Category.food,
       date: DateTime.now(),
     ),
+    ExpenseStructure(
+      title: 'Work',
+      amount: 10.25,
+      category: Category.work,
+      date: DateTime.now(),
+    ),
   ];
 
   void addSomeOverlay() {

@@ -37,7 +37,8 @@ class _NewExpensesState extends State<NewExpenses> {
             controller: _amountController,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              label: Text('\$Amount'),
+              prefixText: '\$',
+              label: Text('Amount'),
             ),
           ),
           Row(
@@ -47,9 +48,7 @@ class _NewExpensesState extends State<NewExpenses> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                },
+                onPressed: () {},
                 child: const Text('Save Expenses'),
               ),
             ],
