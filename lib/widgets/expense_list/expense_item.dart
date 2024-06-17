@@ -23,7 +23,7 @@ class ExpenseItem extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('\$${expenses.amount.toString()}'),
+              Text('₹${expenses.amount.toString()}'),
               const Spacer(),
               Row(
                 children: [
