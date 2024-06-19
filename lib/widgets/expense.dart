@@ -49,8 +49,39 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  void _removeExpense(ExpenseStructure expenses) {
+    final expenseIndex = _registeredexpenses.indexOf(expenses);
+    setState(() {
+      _registeredexpenses.remove(expenses);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('The Expense is Removed.'),
+        duration: const Duration(seconds: 5),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                _registeredexpenses.insert(expenseIndex, expenses);
+              });
+            }),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('There are No Expense Added!'),
+    );
+    if (_registeredexpenses.isNotEmpty) {
+      mainContent = ExpenseList(
+        expenses: _registeredexpenses,
+        onRemoveExpense: _removeExpense,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tacker'),
@@ -64,9 +95,7 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           const Text('Chart'),
-          Expanded(
-            child: ExpenseList(expenses: _registeredexpenses),
-          ),
+          Expanded(child: mainContent),
         ],
       ),
     );
