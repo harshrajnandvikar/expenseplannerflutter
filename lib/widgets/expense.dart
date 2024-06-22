@@ -2,6 +2,7 @@ import 'package:expense_tracker/models/expense_structure.dart';
 import 'package:expense_tracker/widgets/new_expenses.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/expense_list/expense_list.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -84,7 +85,7 @@ class _ExpensesState extends State<Expenses> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expense Tacker'),
+        title: const Text('Expense Tracker'),
         actions: [
           IconButton(
             onPressed: addSomeOverlay,
@@ -94,7 +95,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Text('Chart'),
+          Chart(expenses: _registeredexpenses),
           Expanded(child: mainContent),
         ],
       ),
